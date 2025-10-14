@@ -26,6 +26,9 @@ public class Reservas {
     @JoinColumn(name = "quarto_id", nullable = false)
     private Quartos quarto;
 
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
     private LocalDateTime dataCheckIn;
     private LocalDateTime dataCheckOut;
     private LocalDateTime createdAt;
