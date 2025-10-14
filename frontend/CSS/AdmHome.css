@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container-geral-admo-home {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+/* Sidebar (lado direito) */
+header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 200px;
+  height: 100vh;
+  position: fixed;
+  left: 0; /* 🔹 Agora fica na esquerda */
+  top: 0;
+  background-color: aliceblue;
+  padding: 30px 10px;
+}
+
+header img {
+  width: 100px;
+}
+
+/* Área principal centralizada */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-startq;
+  padding-left: 200px;
+
+  .box-todos-adm {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+    padding: 50px;
+    gap: 20px;
+  }
+}

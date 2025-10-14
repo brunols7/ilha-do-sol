@@ -1,0 +1,635 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 90px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  .container-geral-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px 20px;
+
+    .box-img-logo {
+      width: 90px;
+      height: 80px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    .box-links-pages {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+
+      nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+
+        a {
+          text-decoration: none;
+          color: #2c2c2c;
+          font-size: 16 px;
+          font-weight: 500;
+          transition: all 0.3s ease;
+
+          &:hover {
+            color: rgb(255, 115, 0);
+          }
+        }
+      }
+      .link-icones {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: background-color 0.3s ease;
+
+        .icone-icon {
+          font-size: 30px;
+          color: rgb(255, 115, 0);
+        }
+
+        &:hover {
+          background-color: rgba(255, 115, 0, 0.1);
+        }
+      }
+    }
+  }
+}
+main {
+  width: 100%;
+  min-height: calc(100vh - 90px);
+  display: flex;
+  justify-content: center;
+
+  .container-geral-reservas {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+
+    section.banner-inicio-home {
+      background: url("../img/banner-1.png");
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 80vh;
+    }
+    .box-pesquisa-quartos {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
+      padding: 20px 20px;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      flex-wrap: wrap;
+      gap: 20px;
+
+      .box-data {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        width: 300px;
+        gap: 5px;
+
+        a {
+          font-size: 18px;
+          cursor: pointer;
+          color: #2c2c2c;
+          font-weight: bold;
+        }
+        label {
+          font-size: 18px;
+          color: #2c2c2c;
+          font-weight: 500;
+          margin-top: 10px;
+        }
+
+        input {
+          width: 100%;
+          padding: 5px;
+          outline: none;
+          border-radius: 5px;
+          border: 1px solid #ccc;
+          font-size: 16px;
+        }
+      }
+      .box-hospedes {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        width: 300px;
+        gap: 5px;
+
+        a {
+          font-size: 18px;
+          cursor: pointer;
+          color: #2c2c2c;
+          font-weight: bold;
+        }
+        select {
+          width: 100%;
+          padding: 5px;
+          outline: none;
+          border-radius: 5px;
+          border: 1px solid #ccc;
+          font-size: 16px;
+
+          option {
+            font-size: 16px;
+            color: #2c2c2c;
+          }
+        }
+      }
+      .botao {
+        text-decoration: none;
+        background-color: #0093b2;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: 500;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: #035a6b;
+        }
+      }
+    }
+    .box-bem-vindo-text {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 50px 20px;
+      width: 100%;
+      gap: 20px;
+
+      img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+      }
+      h3 {
+        font-size: 24px;
+        color: #2c2c2c;
+      }
+      p {
+        font-size: 18px;
+        color: #2c2c2c;
+      }
+    }
+    .box-text-quartos-suites {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+      width: 100%;
+      max-width: 1200px;
+      padding: 50px 20px;
+
+      h2 {
+        font-size: 32px;
+        color: #2c2c2c;
+        margin-bottom: 10px;
+      }
+      p {
+        font-size: 18px;
+        color: #2c2c2c;
+      }
+    }
+    /* Carousel */
+    section.carousel-quartos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px 20px;
+      max-width: 1100px;
+      margin: auto;
+
+      .carousel-container {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+      }
+      /* substitua/adicione isso no seu CSS */
+      .carousel {
+        display: flex;
+        overflow-x: auto; /* agora ele rola */
+        scroll-behavior: smooth; /* rolagem suave */
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory; /* encaixe por card (opcional, mas ótimo) */
+        scrollbar-width: none;
+      }
+
+      .carousel::-webkit-scrollbar {
+        display: none;
+      }
+
+      .card {
+        flex: 0 0 auto; /* evita esticar */
+        margin: 0 10px;
+        scroll-snap-align: start; /* alinha no início a cada rolagem */
+        width: 300px; /* garante consistência; ajuste se quiser */
+        height: 400px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      .card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+      .card-body {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 15px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 12px 12px;
+        background: #0093b2;
+        color: white;
+        border-radius: 10px;
+        transition: 0.3s;
+        text-decoration: none;
+      }
+      .btn:hover {
+        background: #025363;
+      }
+
+      /* Botões do Carousel */
+      .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 50%;
+      }
+      .carousel-btn:hover {
+        background: rgba(0, 0, 0, 0.8);
+      }
+      .prev {
+        left: 10px;
+      }
+      .next {
+        right: 10px;
+      }
+    }
+    .box-geral-sobre-home {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+
+      .box-text-sobre {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        max-width: 1200px;
+        padding: 50px 20px;
+        text-align: center;
+        gap: 20px;
+        width: 500px;
+        text-align: left;
+
+        .box-text-image-sobre {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          flex-direction: column;
+          width: 100%;
+          padding: 20px 0px;
+        }
+
+        img {
+          width: 150px;
+          height: 150px;
+        }
+
+        h2 {
+          font-size: 32px;
+          color: #2c2c2c;
+        }
+        p {
+          font-size: 18px;
+          color: #2c2c2c;
+        }
+      }
+      .box-image-sobre {
+        width: 550px;
+        height: 600px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+    section.box-geral-depoimentos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px 20px;
+      max-width: 1100px;
+      margin: auto;
+
+      .carousel-container-depoimentos {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+      }
+      /* substitua/adicione isso no seu CSS */
+      .carousel-depoimentos {
+        display: flex;
+        overflow-x: auto; /* agora ele rola */
+        scroll-behavior: smooth; /* rolagem suave */
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory; /* encaixe por card (opcional, mas ótimo) */
+        scrollbar-width: none;
+      }
+
+      .carousel-depoimentos::-webkit-scrollbar {
+        display: none;
+      }
+
+      .depo {
+        flex: 0 0 auto; /* evita esticar */
+        margin: 0 10px;
+        scroll-snap-align: start; /* alinha no início a cada rolagem */
+        width: 300px; /* garante consistência; ajuste se quiser */
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      }
+
+      .card-body-depo {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 15px;
+
+        .box-image-nome-estrela {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          width: 100%;
+          gap: 10px;
+
+          img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+        }
+      }
+      .star-icon {
+        color: #ff9800;
+        font-size: 20px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 12px 24px;
+        background: #ff9800;
+        color: white;
+        border-radius: 5px;
+        transition: 0.3s;
+        text-decoration: none;
+      }
+      .btn:hover {
+        background: #e68900;
+      }
+
+      /* Botões do Carousel */
+      .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 50%;
+      }
+      .carousel-btn:hover {
+        background: rgba(0, 0, 0, 0.8);
+      }
+      .prev-next {
+        left: 10px;
+      }
+      .next-prev {
+        right: 10px;
+      }
+    }
+    .box-geral-localizacao {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      width: 100%;
+      padding: 50px 20px;
+      gap: 20px;
+
+      .box-endereco {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        width: 500px;
+        gap: 10px;
+
+        h2 {
+          font-size: 32px;
+          color: #2c2c2c;
+        }
+        p {
+          font-size: 18px;
+          color: #2c2c2c;
+        }
+
+        .map {
+          width: 650px;
+          height: 500px;
+        }
+      }
+    }
+  }
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 50px 20px;
+  box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  .container-geral-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1200px;
+
+    .box-logo-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      width: 100%;
+      padding: 20px 0px;
+      gap: 50px;
+
+      .box-logo-footer {
+        width: 150px;
+        height: 200px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+      .box-links-footer {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        width: 270px;
+
+        nav {
+          display: flex;
+          justify-content: center;
+          text-align: left;
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 10px;
+
+          a {
+            text-decoration: none;
+            color: #2c2c2c;
+            font-size: 16 px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+
+            &:hover {
+              color: rgb(255, 115, 0);
+            }
+          }
+        }
+        .formas-pgto {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          gap: 10px;
+
+          img {
+            width: 40px;
+            height: 40px;
+          }
+        }
+      }
+    }
+    .box-text-footer {
+      padding: 20px 0px;
+    }
+  }
+}
+@media screen and (max-width: 600px) {
+  main {
+    .container-geral-reservas {
+      section.banner-inicio-home {
+        height: 60vh;
+      }
+      .box-geral-sobre-home {
+        flex-direction: column;
+
+        .box-text-sobre {
+          width: 100%;
+          text-align: center;
+          align-items: center;
+        }
+        .box-image-sobre {
+          width: 100%;
+          height: auto;
+        }
+      }
+      .box-geral-localizacao {
+        .box-endereco {
+          width: 100%;
+          text-align: center;
+          align-items: center;
+
+          .map {
+            width: 100%;
+            height: 300px;
+          }
+        }
+      }
+      section.carousel-quartos .card {
+        flex: 0 0 calc(50% - 20px);
+      }
+    }
+  }
+  footer {
+    .container-geral-footer {
+      .box-logo-links {
+        .box-links-footer {
+          align-items: center;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 900px) {
+  main {
+    .container-geral-reservas {
+      section.carousel-quartos .card {
+        flex: 0 0 calc(33.33% - 20px);
+      }
+    }
+  }
+}
