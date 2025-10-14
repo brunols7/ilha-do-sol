@@ -1,8 +1,10 @@
 package com.senac.ilha_do_sol.entities;
 
 
+import com.senac.ilha_do_sol.dto.UserDTO;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
 
@@ -21,7 +23,19 @@ public class Users {
     private String username;
     private String email;
     private String cpf;
-    private String role;
+    private String senha;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     private LocalDateTime createdAt;
 
+    public Users(UserDTO dto, PasswordEncoder encoder){
+        this.username = dto.getUsername();
+        this.email = dto.getEmail();
+        this.cpf = dto.getCpf();
+        this.senha = encoder.encode(dto.getSenha());
+        this.role = dto.getRole();
+        this.createdAt = LocalDateTime.now();
+    }
 }
