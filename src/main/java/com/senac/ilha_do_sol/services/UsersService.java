@@ -21,8 +21,8 @@ public class UsersService implements UserDetailsService {
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Users user = usersRepository.findByEmail(email)
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Users user = usersRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
 
         return org.springframework.security.core.userdetails.User.builder()
