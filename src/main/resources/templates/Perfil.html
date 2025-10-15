@@ -1,38 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Perfil</title>
-    <link rel="stylesheet" href="./CSS/Perfil.css" />
+    <link rel="stylesheet" th:href="@{/css/Perfil.css}" />
   </head>
   <body>
     <header>
       <div class="container-geral-header">
         <div class="box-img-logo">
-          <img src="./img/logo.png" alt="" />
+          <img th:src="@{/img/logo.png}" alt="" />
         </div>
         <div class="box-links-pages">
           <nav>
-            <a href="./Home.html">INÍCIO</a>
-            <a href="./Reservas.html">RESERVAR</a>
-            <a href="./Login.html">O HOTEL</a>
-            <a href="./Login.html">CONTATO</a>
+            <a th:href="@{/home}">INÍCIO</a>
+            <a th:href="@{/quartos}">RESERVAR</a>
+            <a th:href="@{/home}">O HOTEL</a>
+            <a th:href="@{/cadastro}">CONTATO</a>
           </nav>
-          <a
-            class="link-icones"
-            href="http://"
-            target="_blank"
-            rel="noopener noreferrer"
-            ><ion-icon class="icone-icon" name="airplane-outline"></ion-icon
-          ></a>
-          <a
-            class="link-icones"
-            href="http://"
-            target="_blank"
-            rel="noopener noreferrer"
-            ><ion-icon class="icone-icon" name="person-outline"></ion-icon
-          ></a>
+          <a class="link-icones" href="http://" target="_blank" rel="noopener noreferrer">
+            <ion-icon class="icone-icon" name="airplane-outline"></ion-icon>
+          </a>
+          <a class="link-icones" th:href="@{/login}" target="_blank" rel="noopener noreferrer">
+            <ion-icon class="icone-icon" name="person-outline"></ion-icon>
+          </a>
         </div>
       </div>
     </header>

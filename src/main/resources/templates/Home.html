@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/Home.css}" />
+  </head>
+  <body>
+    <header>
+      <div class="container-geral-header">
+        <div class="box-img-logo">
+          <img th:src="@{/img/logo.png}" alt="" />
+        </div>
+        <div class="box-links-pages">
+            <nav>
+                <a th:href="@{/home}">INÍCIO</a>
+                <a th:href="@{/quartos}">RESERVAR</a>
+                <a th:href="@{/home}">O HOTEL</a>
+                <a th:href="@{/cadastro}">CONTATO</a>
+            </nav>
+            <a class="link-icones" href="http://" target="_blank" rel="noopener noreferrer">
+                <ion-icon class="icone-icon" name="airplane-outline"></ion-icon>
+            </a>
+            <a class="link-icones" th:href="@{/login}" target="_blank" rel="noopener noreferrer">
+                <ion-icon class="icone-icon" name="person-outline"></ion-icon>
+            </a>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="container-geral-reservas">
+        <section class="banner-inicio-home"></section>
+        <div class="box-pesquisa-quartos">
+            <div class="box-data">
+                 <a
+                  ><ion-icon name="calendar-outline"></ion-icon> Diárias</a
+                >
+                <label for="">Entrada</label>
+                <input type="date">
+                <label for="">Saída</label>
+                <input type="date">
+            </div>
+            <div class="box-hospedes">
+                <a><ion-icon name="body-outline"></ion-icon> Hóspedes</a>
+                <select name="" id="">
+                    <option value="1">1 Adulto</option>
+                    <option value="2">2 Adultos</option>
+                    <option value="3">1 Adulto, 1 Criança</option>
+                    <option value="4">2 Adulto, 1 Criança</option>
+                </select>
+                
+            </div>
+            <a class="botao" href="">BUSCAR RESERVA</a>
+        </div>
+        <div class="box-bem-vindo-text">
+            <img th:src="@{/img/logo.png}" alt="">
+            <p style="font-size: 18px;color: #8f8f8f;">BEM-VINDO AO HOTEL ILHA DO SOL</p>
+            <h3>INSPIRE-SE COM O NOSSO RESORT À BEIRA-MAR E SEU DESIGN MODERNO</h3>
+            <p>
+                Descubra o Hotel Ilha do Sol, um resort à beira-mar que une sofisticação e conforto em um cenário paradisíaco. <br>
+            Relaxe em suítes com vista para o mar e aproveite nossa piscina de borda infinita. <br>
+            Saboreie o melhor da gastronomia brasileira e internacional em nossos restaurantes exclusivos. <br>
+            Viva momentos únicos de lazer, bem-estar e descanso onde o sol nunca deixa de brilhar.
+            </p>
+            
+        </div>
+        <div class="box-text-quartos-suites">
+            <h2>Quartos e Suítes</h2>
+            <p>Relaxe e cuide de si mesmo em nossas suítes exclusivas.</p>
+        </div>
+        <!-- Imóveis em destaque com Carousel -->
+        <section class="carousel-quartos" id="imoveis">
+          <div class="carousel-container">
+            <button class="carousel-btn prev">&#10094;</button>
+            <div class="carousel" id="carousel">
+              <div class="card">
+                <img th:src="@{/img/quarto-1.jpg}" alt="Imóvel 1" />
+                <div class="card-body">
+                  <p>Nome do quarto</p>
+                  <a href="#" class="btn">RESERVAR</a>
+                </div>
+              </div>
+                <!-- PUXAR DO BACK -->
+            </div>
+            <button class="carousel-btn next">&#10095;</button>
+          </div>
+        </section>
+        <div class="box-geral-sobre-home">
+          <div class="box-text-sobre">
+              <div class="box-text-image-sobre">
+                  <img th:src="@{/img/logo-1.png}" alt="Logo">
+
+              <p>RESORT AND WEEKEND</p>
+              </div>
+
+              <h3>
+                  DESFRUTE DE UMA ESTRUTURA 5 ESTRELAS 
+              </h3>
+
+              <p>No Hotel Resort Ilha do Sol você tem acesso aos melhores serviços!</p>
+              <p>
+                  - 3 Piscinas <br>
+                  - Tobogãs <br>
+                  - Restaurante <br>
+                  - Academia <br>
+                  - Pé na areia
+              </p>
+          </div>
+          <div class="box-image-sobre">
+              <img th:src="@{/img/sobre.png}" alt="imagem sobre">
+          </div>
+        </div>
+        <div class="box-text-quartos-suites">
+              <h2>Avaliações</h2>
+              <p>Descubra como será sua experiencia em nosso hotel!</p>
+        </div>
+        <!-- Depoimentos -->
+        <section class="box-geral-depoimentos" id="depoimentos">
+          <div class="carousel-container-depoimentos">
+            <button class="carousel-btn prev-next">&#10094;</button>
+            <div class="carousel-depoimentos" id="carousel-depoimentos">
+              <div class="depo">
+                <div class="card-body-depo">
+                  <div class="box-image-nome-estrela">
+                      <img th:src="@{/img/Virginia.png}" alt="imagem depoimento">
+                      <p>Nome</p>
+                      
+                  </div>
+                  <div class="box-star">
+                          <ion-icon class="star-icon" name="star-outline"></ion-icon>
+                          <ion-icon class="star-icon" name="star-outline"></ion-icon>
+                          <ion-icon class="star-icon" name="star-outline"></ion-icon>
+                          <ion-icon class="star-icon" name="star-outline"></ion-icon>
+                          <ion-icon class="star-icon" name="star-outline"></ion-icon>
+                  </div>
+                  <p>
+                    “Excelente atendimento, consegui comprar meu apartamento em
+                    tempo recorde.”
+                  </p>
+                  <strong>- João S.</strong>
+                </div>
+              </div>
+                <!-- PUXAR DO BACK -->
+            </div>
+            <button class="carousel-btn next-prev">&#10095;</button>
+          </div>
+        </section>
+        <div class="box-geral-localizacao">
+          <div class="box-endereco">
+            <h2>Localização</h2>
+            <p>Venha nos visitar!</p>
+            <p>Av. Ibirapuera, 1234 - São Paulo, SP</p>
+            <p>Telefone: (11) 1234-5678</p>
+            <p>Email: contato@hotelexemplo.com</p>
+          </div>
+          <div class="box-endereco">
+            <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14626.08857126789!2d-46.672909652492116!3d-23.585599945224267!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59e6f06b0f89%3A0x43617829f701baf6!2sIbirapuera%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1758716057377!5m2!1spt-BR!2sbr"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="container-geral-footer">
+        <div class="box-logo-links">
+          <div class="box-logo-footer">
+            <img th:src="@{/img/logo-1.png}" alt="logo hotel" />
+          </div>
+          <div class="box-links-footer">
+              <nav>
+                  <a th:href="@{/home}">INÍCIO</a>
+                  <a th:href="@{/quartos}">RESERVAR</a>
+                  <a th:href="@{/home}">O HOTEL</a>
+                  <a th:href="@{/cadastro}">CONTATO</a>
+              </nav>
+          </div>
+          <div class="box-links-footer">
+            <nav>
+                <a th:href="@{/home}">COMODIDADES</a>
+                <a th:href="@{/perfil}">MEU PERFIL</a>
+                <a th:href="@{/reservas}">MINHAS RESERVAS</a>
+            </nav>
+            <div class="formas-pgto">
+                <img th:src="@{/img/1.png}" alt="imagem">
+                <img th:src="@{/img/2.png}" alt="imagem">
+                <img th:src="@{/img/3.png}" alt="imagem">
+                <img style="height: 20px;" th:src="@{/img/4.png}" alt="imagem">
+                <img th:src="@{/img/5.png}" alt="imagem">
+            </div>
+          </div>
+          
+        </div>
+        <div class="box-text-footer">
+          <p>© 2025 Ilha do Sol. Todos os direitos reservados.</p>
+    </footer>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script th:src="@{/js/home.js}"></script>
+  </body>
+</html>

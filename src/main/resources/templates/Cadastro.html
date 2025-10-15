@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastro</title>
-    <link rel="stylesheet" href="./CSS/Cadastro.css" />
+    <link rel="stylesheet" th:href="@{/css/Cadastro.css}"/>
   </head>
   <body>
     <div class="container-geral-Cadastro">
       <div class="box-image">
-        <img src="./img/logo.png" alt="Logo" />
+        <img th:src="@{/img/logo.png}" alt="Logo" />
       </div>
       <div class="box-Cadastro">
         <h1>CADASTRO</h1>
@@ -36,7 +36,7 @@
         </form>
 
         <p>
-          Já possui uma conta? <a href="./Login.html">Realize o Login aqui!</a>
+          Já possui uma conta? <a th:href="@{/login}">Realize o Login aqui!</a>
         </p>
       </div>
     </div>

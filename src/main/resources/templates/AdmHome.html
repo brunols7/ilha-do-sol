@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ADM Home</title>
-    <link rel="stylesheet" href="./CSS/AdmHome.css" />
+    <link rel="stylesheet" th:href="@{/css/AdmHome.css}" />
   </head>
   <body>
     <div class="container-geral-admo-home">
@@ -15,7 +15,7 @@
         </div>
       </main>
       <header>
-        <img src="./img/logo-1.png" alt="Logo" />
+        <img th:src="@{/img/logo-1.png}" alt="Logo" />
       </header>
     </div>
   </body>

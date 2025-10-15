@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" href="./CSS/Login.css" />
+    <link rel="stylesheet" th:href="@{/css/Login.css}" />
   </head>
   <body>
     <div class="container-geral-login">
       <div class="box-image">
-        <img src="./img/logo.png" alt="Logo" />
+        <img th:src="@{/img/logo.png}" alt="Logo" />
       </div>
       <div class="box-login">
         <h1>Login</h1>
-        <form action="/login" method="POST">
+        <form th:action="@{/login}" method="POST">
           <div class="box-text">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required />
@@ -29,7 +29,7 @@
           <br />
         </form>
         <p>
-          Não tem uma conta? <a href="./Cadastro.html">Cadastre-se aqui!</a>
+          Não tem uma conta? <a th:href="@{/cadastro}">Cadastre-se aqui!</a>
         </p>
       </div>
     </div>
