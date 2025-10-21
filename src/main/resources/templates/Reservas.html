@@ -35,26 +35,30 @@
           <p>Aqui você pode consultar ou gerir suas reservas!</p>
         </div>
         <div class="box-cards-quartos">
-          <div class="box-card-dorm">
+          <div class="box-card-dorm" th:each="reserva : ${reservas}">
             <div class="box-image">
-              <img th:src="@{/img/quarto-1.jpg}" alt="imagem quarto" />
+              <img th:src="@{${reserva.quarto.imageUrl}}" alt="imagem quarto" />
             </div>
             <div class="box-sub-conf">
-              <p>Quarto Beira Mar</p>
-              <p class="status">CONFIRMADA</p>
+              <p th:text="${reserva.quarto.nome}">Quarto Beira Mar</p>
+              <p class="status" th:text="${reserva.status}">CONFIRMADA</p>
             </div>
             <div class="box-icones">
               <div class="box-link-1">
-                <a><ion-icon name="body-outline"></ion-icon> 3</a>
+                <a><ion-icon name="body-outline"></ion-icon> <span th:text="${reserva.quarto.capacidadeMax}">3</span></a>
                 <a
-                  ><ion-icon name="calendar-outline"></ion-icon> 12/09 -
-                  15/09</a
+                  ><ion-icon name="calendar-outline"></ion-icon>
+                  <span th:text="${#temporals.format(reserva.dataCheckIn, 'dd/MM')}">12/09</span> -
+                  <span th:text="${#temporals.format(reserva.dataCheckOut, 'dd/MM')}">15/09</span></a
                 >
               </div>
-              <a><ion-icon name="trash-outline"></ion-icon></a>
+              <form th:action="@{/reservas/{id}/cancelar(id=${reserva.id})}" method="post" style="display:inline;">
+                <button type="submit" style="background:none;border:none;cursor:pointer;color:inherit;">
+                  <ion-icon name="trash-outline"></ion-icon>
+                </button>
+              </form>
             </div>
           </div>
-          <!-- PUXAR DO BACK -->
         </div>
       </div>
     </main>

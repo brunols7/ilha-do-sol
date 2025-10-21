@@ -74,14 +74,13 @@
           <div class="carousel-container">
             <button class="carousel-btn prev">&#10094;</button>
             <div class="carousel" id="carousel">
-              <div class="card">
-                <img th:src="@{/img/quarto-1.jpg}" alt="Imóvel 1" />
+              <div class="card" th:each="quarto : ${quartos}">
+                <img th:src="@{${quarto.imageUrl}}" alt="Imóvel" />
                 <div class="card-body">
-                  <p>Nome do quarto</p>
+                  <p th:text="${quarto.nome}">Nome do quarto</p>
                   <a href="#" class="btn">RESERVAR</a>
                 </div>
               </div>
-                <!-- PUXAR DO BACK -->
             </div>
             <button class="carousel-btn next">&#10095;</button>
           </div>

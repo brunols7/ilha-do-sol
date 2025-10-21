@@ -35,13 +35,13 @@
           <p>Relaxe e cuide de si mesmo em nossas suítes exclusivas.</p>
         </div>
         <div class="box-cards-quartos">
-          <div class="box-card-dorm">
+          <div class="box-card-dorm" th:each="quarto : ${quartos}">
             <div class="box-image">
-              <img th:src="@{/img/quarto-1.jpg}" alt="imagem quarto" />
+              <img th:src="@{${quarto.imageUrl}}" alt="imagem quarto" />
             </div>
             <div class="box-sub-conf">
-              <p>Quarto XYZ</p>
-              <p>
+              <p th:text="${quarto.nome}">Quarto XYZ</p>
+              <p th:text="${quarto.descricao}">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta
                 eaque quam, fugit corrupti quisquam aliquid molestiae eum
                 suscipit, aspernatur nulla facilis quia vel. Iusto laborum
@@ -49,7 +49,6 @@
               </p>
             </div>
           </div>
-          <!-- PUXAR DO BACK -->
         </div>
       </div>
     </main>
