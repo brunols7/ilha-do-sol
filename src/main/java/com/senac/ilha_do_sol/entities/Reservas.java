@@ -22,15 +22,21 @@ public class Reservas {
     @JoinColumn(name = "user_id", nullable = false)
     private Users user;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "quarto_id", nullable = false)
     private Quartos quarto;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Status status;
 
+    @Column(nullable = false)
     private LocalDateTime dataCheckIn;
+
+    @Column(nullable = false)
     private LocalDateTime dataCheckOut;
+
+    @Column(nullable = false)
     private LocalDateTime createdAt;
 
 }

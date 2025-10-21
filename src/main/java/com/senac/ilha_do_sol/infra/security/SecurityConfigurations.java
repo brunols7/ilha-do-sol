@@ -19,9 +19,13 @@ public class SecurityConfigurations {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
                         .requestMatchers("/", "/home", "/login", "/cadastro").permitAll()
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/quartos", "/api/quartos/**").permitAll()
+                        .requestMatchers("/api/reservas/**", "/api/user/**").authenticated()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/quartos", "/reservas", "/perfil").hasAnyRole("USER", "ADMIN")
                         .anyRequest().authenticated()
