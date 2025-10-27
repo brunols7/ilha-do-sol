@@ -13,6 +13,6 @@ public interface QuartosRepository extends JpaRepository<Quartos, Long> {
     Quartos findByNumeroQuarto(String numero);
     List<Quartos> findByCapacidadeMaxGreaterThanEqual(int capacidade);
 
-    @Query("SELECT q FROM quartos q WHERE q.id NOT IN (SELECT r.quarto.id FROM reservas r WHERE (r.dataCheckIn <= :dataCheckout AND r.dataCheckOut >= :dataCheckIn))")
+    @Query("SELECT q FROM Quartos q WHERE q.id NOT IN (SELECT r.quarto.id FROM Reservas r WHERE (r.dataCheckIn <= :dataCheckout AND r.dataCheckOut >= :dataCheckIn))")
     List<Quartos> findByQuartosDisponiveis(LocalDateTime dataCheckIn, LocalDateTime dataCheckOut);
 }
