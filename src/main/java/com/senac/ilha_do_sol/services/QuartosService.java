@@ -2,6 +2,7 @@ package com.senac.ilha_do_sol.services;
 
 import com.senac.ilha_do_sol.entities.Quartos;
 import com.senac.ilha_do_sol.repositories.QuartosRepository;
+import com.senac.ilha_do_sol.services.template.AbstractEntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class QuartosService {
+public class QuartosService extends AbstractEntityService<Quartos> {
 
     @Autowired
     private QuartosRepository quartosRepository;
@@ -47,21 +48,45 @@ public class QuartosService {
     }
 
     public Quartos criarQuarto(Quartos quarto) {
-        if (quartosRepository.findByNumeroQuarto(quarto.getNumeroQuarto()) != null) {
-            throw new IllegalArgumentException("Já existe um quarto com este número");
-        }
-        return quartosRepository.save(quarto);
+        return criar(quarto);
     }
 
     public Quartos atualizarQuarto(Long id, Quartos quartoAtualizado) {
-        Optional<Quartos> quartoExistente = quartosRepository.findById(id);
+        return atualizar(id, quartoAtualizado);
+    }
 
-        if (quartoExistente.isEmpty()) {
-            throw new IllegalArgumentException("Quarto não encontrado");
+    @Override
+    protected void validarCamposObrigatorios(Quartos quarto) {
+        if (quarto.getNome() == null || quarto.getNome().isEmpty()) {
+            throw new IllegalArgumentException("Nome do quarto é obrigatório");
         }
+        if (quarto.getNumeroQuarto() == null || quarto.getNumeroQuarto().isEmpty()) {
+            throw new IllegalArgumentException("Número do quarto é obrigatório");
+        }
+    }
 
-        Quartos quarto = quartoExistente.get();
+    @Override
+    protected void validarRegrasNegocio(Quartos quarto) {
+        if (quarto.getId() == null) {
+            Quartos existente = quartosRepository.findByNumeroQuarto(quarto.getNumeroQuarto());
+            if (existente != null) {
+                throw new IllegalArgumentException("Já existe um quarto com este número");
+            }
+        }
+    }
 
+    @Override
+    protected Quartos salvar(Quartos quarto) {
+        return quartosRepository.save(quarto);
+    }
+
+    @Override
+    protected Quartos buscarPorId(Long id) {
+        return quartosRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    protected void aplicarAtualizacoes(Quartos quarto, Quartos quartoAtualizado) {
         if (quartoAtualizado.getNome() != null) {
             quarto.setNome(quartoAtualizado.getNome());
         }
@@ -80,8 +105,6 @@ public class QuartosService {
         if (quartoAtualizado.getImageUrl() != null) {
             quarto.setImageUrl(quartoAtualizado.getImageUrl());
         }
-
-        return quartosRepository.save(quarto);
     }
 
     public void deletarQuarto(Long id) {

@@ -4,9 +4,15 @@ import com.senac.ilha_do_sol.entities.Quartos;
 import com.senac.ilha_do_sol.entities.Reservas;
 import com.senac.ilha_do_sol.entities.Status;
 import com.senac.ilha_do_sol.entities.Users;
+import com.senac.ilha_do_sol.events.ReservaCanceladaEvent;
+import com.senac.ilha_do_sol.events.ReservaCriadaEvent;
+import com.senac.ilha_do_sol.events.ReservaStatusAtualizadoEvent;
 import com.senac.ilha_do_sol.repositories.QuartosRepository;
 import com.senac.ilha_do_sol.repositories.ReservasRepository;
+import com.senac.ilha_do_sol.services.strategy.CalculoValorStrategy;
+import com.senac.ilha_do_sol.services.strategy.CalculoValorPadraoStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -22,6 +28,26 @@ public class ReservasService {
 
     @Autowired
     private QuartosRepository quartosRepository;
+
+    @Autowired
+    private ApplicationEventPublisher eventPublisher;
+
+    private CalculoValorStrategy calculoValorStrategy;
+
+    @Autowired
+    public ReservasService(ReservasRepository reservasRepository,
+                          QuartosRepository quartosRepository,
+                          CalculoValorPadraoStrategy calculoValorPadraoStrategy,
+                          ApplicationEventPublisher eventPublisher) {
+        this.reservasRepository = reservasRepository;
+        this.quartosRepository = quartosRepository;
+        this.calculoValorStrategy = calculoValorPadraoStrategy;
+        this.eventPublisher = eventPublisher;
+    }
+
+    public void setCalculoValorStrategy(CalculoValorStrategy calculoValorStrategy) {
+        this.calculoValorStrategy = calculoValorStrategy;
+    }
 
     public List<Reservas> buscarTodasReservas() {
         return reservasRepository.findAll();
@@ -71,7 +97,11 @@ public class ReservasService {
         reserva.setStatus(Status.CONFIRMADA);
         reserva.setCreatedAt(LocalDateTime.now());
 
-        return reservasRepository.save(reserva);
+        Reservas reservaSalva = reservasRepository.save(reserva);
+
+        eventPublisher.publishEvent(new ReservaCriadaEvent(this, reservaSalva));
+
+        return reservaSalva;
     }
 
     public Reservas atualizarStatusReserva(Long reservaId, Status novoStatus) {
@@ -82,13 +112,20 @@ public class ReservasService {
         }
 
         Reservas reserva = reservaOpt.get();
+        Status statusAnterior = reserva.getStatus();
         reserva.setStatus(novoStatus);
 
-        return reservasRepository.save(reserva);
+        Reservas reservaAtualizada = reservasRepository.save(reserva);
+
+        eventPublisher.publishEvent(new ReservaStatusAtualizadoEvent(this, reservaAtualizada, statusAnterior, novoStatus));
+
+        return reservaAtualizada;
     }
 
     public Reservas cancelarReserva(Long reservaId) {
-        return atualizarStatusReserva(reservaId, Status.CANCELADA);
+        Reservas reserva = atualizarStatusReserva(reservaId, Status.CANCELADA);
+        eventPublisher.publishEvent(new ReservaCanceladaEvent(this, reserva));
+        return reserva;
     }
 
     public void deletarReserva(Long id) {
@@ -106,15 +143,6 @@ public class ReservasService {
         }
 
         Reservas reserva = reservaOpt.get();
-        long diasReserva = ChronoUnit.DAYS.between(
-            reserva.getDataCheckIn().toLocalDate(),
-            reserva.getDataCheckOut().toLocalDate()
-        );
-
-        if (diasReserva <= 0) {
-            diasReserva = 1;
-        }
-
-        return reserva.getQuarto().getValor() * diasReserva;
+        return calculoValorStrategy.calcular(reserva);
     }
 }
