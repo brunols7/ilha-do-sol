@@ -19,44 +19,81 @@
             <a th:href="@{/home}">O HOTEL</a>
             <a th:href="@{/cadastro}">CONTATO</a>
           </nav>
-          <a class="link-icones" href="http://" target="_blank" rel="noopener noreferrer">
+          <a
+            class="link-icones"
+            href="http://"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <ion-icon class="icone-icon" name="airplane-outline"></ion-icon>
           </a>
-          <a class="link-icones" th:href="@{/login}" target="_blank" rel="noopener noreferrer">
+          <a
+            class="link-icones"
+            th:href="@{/login}"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <ion-icon class="icone-icon" name="person-outline"></ion-icon>
           </a>
         </div>
       </div>
     </header>
     <main>
-      <div class="container-geral-reservas">
-        <div class="box-titulo-text">
-          <h2>Minhas reservas</h2>
-          <p>Aqui você pode consultar ou gerir suas reservas!</p>
-        </div>
-        <div class="box-cards-quartos">
-          <div class="box-card-dorm" th:each="reserva : ${reservas}">
-            <div class="box-image">
-              <img th:src="@{${reserva.quarto.imageUrl}}" alt="imagem quarto" />
-            </div>
-            <div class="box-sub-conf">
-              <p th:text="${reserva.quarto.nome}">Quarto Beira Mar</p>
-              <p class="status" th:text="${reserva.status}">CONFIRMADA</p>
-            </div>
-            <div class="box-icones">
-              <div class="box-link-1">
-                <a><ion-icon name="body-outline"></ion-icon> <span th:text="${reserva.quarto.capacidadeMax}">3</span></a>
-                <a
-                  ><ion-icon name="calendar-outline"></ion-icon>
-                  <span th:text="${#temporals.format(reserva.dataCheckIn, 'dd/MM')}">12/09</span> -
-                  <span th:text="${#temporals.format(reserva.dataCheckOut, 'dd/MM')}">15/09</span></a
-                >
+      <div th:fragment="reservasContent">
+        <div class="container-geral-reservas">
+          <div class="box-titulo-text">
+            <h2>Minhas reservas</h2>
+            <p>Aqui você pode consultar ou gerir suas reservas!</p>
+          </div>
+          <div class="box-cards-quartos">
+            <div class="box-card-dorm" th:each="reserva : ${reservas}">
+              <div class="box-image">
+                <img
+                  th:src="@{${reserva.quarto.imageUrl}}"
+                  alt="imagem quarto"
+                />
               </div>
-              <form th:action="@{/reservas/{id}/cancelar(id=${reserva.id})}" method="post" style="display:inline;">
-                <button type="submit" style="background:none;border:none;cursor:pointer;color:inherit;">
-                  <ion-icon name="trash-outline"></ion-icon>
-                </button>
-              </form>
+              <div class="box-sub-conf">
+                <p th:text="${reserva.quarto.nome}">Quarto Beira Mar</p>
+                <p class="status" th:text="${reserva.status}">CONFIRMADA</p>
+              </div>
+              <div class="box-icones">
+                <div class="box-link-1">
+                  <a>
+                    <ion-icon name="body-outline"></ion-icon>
+                    <span th:text="${reserva.quarto.capacidadeMax}">3</span>
+                  </a>
+                  <a>
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <span
+                      th:text="${#temporals.format(reserva.dataCheckIn, 'dd/MM')}"
+                      >12/09</span
+                    >
+                    -
+                    <span
+                      th:text="${#temporals.format(reserva.dataCheckOut, 'dd/MM')}"
+                      >15/09</span
+                    >
+                  </a>
+                </div>
+                <form
+                  th:action="@{/reservas/{id}/cancelar(id=${reserva.id})}"
+                  method="post"
+                  style="display: inline"
+                >
+                  <button
+                    type="submit"
+                    style="
+                      background: none;
+                      border: none;
+                      cursor: pointer;
+                      color: inherit;
+                    "
+                  >
+                    <ion-icon name="trash-outline"></ion-icon>
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
