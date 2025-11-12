@@ -20,9 +20,11 @@ public class SecurityConfigurations {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
+                .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
                         .requestMatchers("/", "/home", "/login", "/cadastro").permitAll()
+                        .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/quartos", "/api/quartos/**").permitAll()
                         .requestMatchers("/api/reservas/**", "/api/user/**").authenticated()
@@ -33,7 +35,7 @@ public class SecurityConfigurations {
                 .formLogin(form -> form
                         .loginPage("/login")
                         .loginProcessingUrl("/login")
-                        .usernameParameter("username")
+                        .usernameParameter("email")
                         .passwordParameter("password")
                         .successHandler((request, response, authentication) -> {
                             boolean isAdmin = authentication.getAuthorities().stream()

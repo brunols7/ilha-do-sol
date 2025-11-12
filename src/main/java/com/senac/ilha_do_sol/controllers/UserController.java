@@ -22,9 +22,9 @@ public class UserController {
     public ResponseEntity<?> obterPerfil() {
         try {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            String username = authentication.getName();
+            String email = authentication.getName();
 
-            Users user = usersRepository.findByUsername(username)
+            Users user = usersRepository.findByEmail(email)
                     .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
             Map<String, Object> perfil = new HashMap<>();

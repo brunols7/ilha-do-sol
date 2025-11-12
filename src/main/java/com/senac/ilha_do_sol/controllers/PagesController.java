@@ -68,8 +68,8 @@ public class PagesController {
     @GetMapping("/perfil")
     public String perfil(Model model){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();
-        Users user = usersRepository.findByUsername(username).orElseThrow();
+        String email = auth.getName();
+        Users user = usersRepository.findByEmail(email).orElseThrow();
         model.addAttribute("user", user);
         return "Perfil";
     }
@@ -77,8 +77,8 @@ public class PagesController {
     @GetMapping("/reservas")
     public String reservas(Model model){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();
-        Users user = usersRepository.findByUsername(username).orElseThrow();
+        String email = auth.getName();
+        Users user = usersRepository.findByEmail(email).orElseThrow();
         List<Reservas> reservas = reservasService.buscarReservasPorUsuario(user);
         model.addAttribute("reservas", reservas);
         return "Reservas";
