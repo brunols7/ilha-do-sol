@@ -13,7 +13,7 @@
       </div>
       <div class="box-Cadastro">
         <h1>CADASTRO</h1>
-        <form action="/Cadastro" method="POST">
+        <form action="/cadastro" method="POST">
           <div class="box-text">
             <label for="username">Nome:</label>
             <input type="text" id="username" name="username" required />
@@ -23,6 +23,12 @@
           <div class="box-text">
             <label for="email">E-mail:</label>
             <input type="email" id="email" name="email" required />
+          </div>
+
+          <br />
+          <div class="box-text">
+            <label for="cpf">CPF:</label>
+            <input type="text" id="cpf" name="cpf" maxlength="11" required />
           </div>
 
           <br />
@@ -40,5 +46,52 @@
         </p>
       </div>
     </div>
+    <script>
+      // Validação do formulário de cadastro
+      document.querySelector('form').addEventListener('submit', function(event) {
+        const username = document.getElementById('username').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const cpf = document.getElementById('cpf').value.trim();
+        const password = document.getElementById('password').value.trim();
+
+        // Verifica se todos os campos estão vazios
+        if (!username && !email && !cpf && !password) {
+          event.preventDefault();
+          alert('Por favor, preencha todos os campos!');
+          return false;
+        }
+
+        // Verifica cada campo individualmente
+        if (!username) {
+          event.preventDefault();
+          alert('Por favor, preencha o nome!');
+          return false;
+        }
+
+        if (!email) {
+          event.preventDefault();
+          alert('Por favor, preencha o e-mail!');
+          return false;
+        }
+
+        if (!cpf) {
+          event.preventDefault();
+          alert('Por favor, preencha o CPF!');
+          return false;
+        }
+
+        if (cpf.length !== 11 || !/^\d+$/.test(cpf)) {
+          event.preventDefault();
+          alert('Por favor, preencha um CPF válido com 11 dígitos!');
+          return false;
+        }
+
+        if (!password) {
+          event.preventDefault();
+          alert('Por favor, preencha a senha!');
+          return false;
+        }
+      });
+    </script>
   </body>
 </html>

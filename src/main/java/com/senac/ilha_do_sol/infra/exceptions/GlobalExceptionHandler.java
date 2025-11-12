@@ -1,5 +1,9 @@
 package com.senac.ilha_do_sol.infra.exceptions;
 
+import com.senac.ilha_do_sol.controllers.AuthController;
+import com.senac.ilha_do_sol.controllers.QuartosController;
+import com.senac.ilha_do_sol.controllers.ReservasController;
+import com.senac.ilha_do_sol.controllers.UserController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -10,7 +14,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.util.HashMap;
 import java.util.Map;
 
-@RestControllerAdvice
+@RestControllerAdvice(assignableTypes = {AuthController.class, QuartosController.class, ReservasController.class, UserController.class})
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

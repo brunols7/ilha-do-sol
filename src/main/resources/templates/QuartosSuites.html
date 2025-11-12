@@ -16,13 +16,13 @@
           <nav>
             <a th:href="@{/home}">INÍCIO</a>
             <a th:href="@{/quartos}">RESERVAR</a>
-            <a th:href="@{/home}">O HOTEL</a>
+            <a th:href="@{/quartos}">QUARTOS</a>
             <a th:href="@{/cadastro}">CONTATO</a>
           </nav>
-          <a class="link-icones" href="http://" target="_blank" rel="noopener noreferrer">
+          <a class="link-icones" th:href="@{/reservas}">
             <ion-icon class="icone-icon" name="airplane-outline"></ion-icon>
           </a>
-          <a class="link-icones" th:href="@{/login}" target="_blank" rel="noopener noreferrer">
+          <a class="link-icones" th:href="@{/perfil}">
             <ion-icon class="icone-icon" name="person-outline"></ion-icon>
           </a>
         </div>
@@ -62,7 +62,7 @@
             <nav>
               <a th:href="@{/home}">INÍCIO</a>
               <a th:href="@{/quartos}">RESERVAR</a>
-              <a th:href="@{/home}">O HOTEL</a>
+              <a th:href="@{/quartos}">QUARTOS</a>
               <a th:href="@{/cadastro}">CONTATO</a>
             </nav>
           </div>

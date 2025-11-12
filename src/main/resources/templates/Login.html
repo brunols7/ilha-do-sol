@@ -34,6 +34,30 @@
       </div>
     </div>
     <script>
+      // Validação do formulário
+      document.querySelector('form').addEventListener('submit', function(event) {
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value.trim();
+
+        if (!email && !password) {
+          event.preventDefault();
+          alert('Por favor, preencha o email e a senha!');
+          return false;
+        }
+
+        if (!email) {
+          event.preventDefault();
+          alert('Por favor, preencha o email!');
+          return false;
+        }
+
+        if (!password) {
+          event.preventDefault();
+          alert('Por favor, preencha a senha!');
+          return false;
+        }
+      });
+
       // Verifica se há parâmetro de erro na URL
       const urlParams = new URLSearchParams(window.location.search);
       if (urlParams.get('error') === 'true') {

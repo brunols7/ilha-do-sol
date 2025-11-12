@@ -49,6 +49,9 @@ public class HotelInfoService {
         if (hotelInfoAtualizada.getTelefone() != null) {
             info.setTelefone(hotelInfoAtualizada.getTelefone());
         }
+        if (hotelInfoAtualizada.getEmail() != null) {
+            info.setEmail(hotelInfoAtualizada.getEmail());
+        }
         if (hotelInfoAtualizada.getEndereco() != null) {
             info.setEndereco(hotelInfoAtualizada.getEndereco());
         }

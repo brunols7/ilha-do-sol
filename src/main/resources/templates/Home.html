@@ -16,13 +16,13 @@
             <nav>
                 <a th:href="@{/home}">INÍCIO</a>
                 <a th:href="@{/quartos}">RESERVAR</a>
-                <a th:href="@{/home}">O HOTEL</a>
+                <a th:href="@{/quartos}">QUARTOS</a>
                 <a th:href="@{/cadastro}">CONTATO</a>
             </nav>
-            <a class="link-icones" href="http://" target="_blank" rel="noopener noreferrer">
+            <a class="link-icones" th:href="@{/reservas}">
                 <ion-icon class="icone-icon" name="airplane-outline"></ion-icon>
             </a>
-            <a class="link-icones" th:href="@{/login}" target="_blank" rel="noopener noreferrer">
+            <a class="link-icones" th:href="@{/perfil}">
                 <ion-icon class="icone-icon" name="person-outline"></ion-icon>
             </a>
         </div>
@@ -122,9 +122,9 @@
               <div class="depo">
                 <div class="card-body-depo">
                   <div class="box-image-nome-estrela">
-                      <img th:src="@{/img/Virginia.png}" alt="imagem depoimento">
-                      <p>Nome</p>
-                      
+                      <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="usuario">
+                      <p>Maria Silva</p>
+
                   </div>
                   <div class="box-star">
                           <ion-icon class="star-icon" name="star-outline"></ion-icon>
@@ -134,10 +134,67 @@
                           <ion-icon class="star-icon" name="star-outline"></ion-icon>
                   </div>
                   <p>
-                    “Excelente atendimento, consegui comprar meu apartamento em
-                    tempo recorde.”
+                    "Excelente atendimento, consegui comprar meu apartamento em
+                    tempo recorde."
                   </p>
-                  <strong>- João S.</strong>
+                  <strong>- Maria Silva.</strong>
+                </div>
+              </div><div class="depo">
+                <div class="card-body-depo">
+                  <div class="box-image-nome-estrela">
+                      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0" alt="usuario">
+                      <p>Carlos Eduardo</p>
+
+                  </div>
+                  <div class="box-star">
+                          <ion-icon class="star-icon" name="star"></ion-icon>
+                          <ion-icon class="star-icon" name="star"></ion-icon>
+                          <ion-icon class="star-icon" name="star"></ion-icon>
+                          <ion-icon class="star-icon" name="star"></ion-icon>
+                          <ion-icon class="star-icon" name="star-outline"></ion-icon>
+                  </div>
+                  <p>
+                    "A piscina de borda infinita com vista para o mar é simplesmente espetacular! Minha família adorou cada momento."
+                  </p>
+                  <strong>- Carlos Eduardo.</strong>
+                </div>
+              </div><div class="depo">
+                <div class="card-body-depo">
+                  <div class="box-image-nome-estrela">
+                      <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0" alt="usuario">
+                      <p>Ana Paula Santos</p>
+
+                  </div>
+                  <div class="box-star">
+                          <ion-icon class="star-icon" name="star"></ion-icon>
+                          <ion-icon class="star-icon" name="star"></ion-icon>
+                          <ion-icon class="star-icon" name="star"></ion-icon>
+                          <ion-icon class="star-icon" name="star"></ion-icon>
+                          <ion-icon class="star-icon" name="star"></ion-icon>
+                  </div>
+                  <p>
+                    "Suíte maravilhosa com vista para o mar! Conforto, limpeza impecável e atendimento cinco estrelas."
+                  </p>
+                  <strong>- Ana Paula Santos.</strong>
+                </div>
+              </div><div class="depo">
+                <div class="card-body-depo">
+                  <div class="box-image-nome-estrela">
+                      <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0" alt="usuario">
+                      <p>Roberto Lima</p>
+
+                  </div>
+                  <div class="box-star">
+                          <ion-icon class="star-icon" name="star"></ion-icon>
+                          <ion-icon class="star-icon" name="star"></ion-icon>
+                          <ion-icon class="star-icon" name="star"></ion-icon>
+                          <ion-icon class="star-icon" name="star"></ion-icon>
+                          <ion-icon class="star-icon" name="star-outline"></ion-icon>
+                  </div>
+                  <p>
+                    "O restaurante do hotel serve os melhores frutos do mar que já provei. Experiência gastronômica inesquecível!"
+                  </p>
+                  <strong>- Roberto Lima.</strong>
                 </div>
               </div>
                 <!-- PUXAR DO BACK -->
@@ -149,12 +206,12 @@
           <div class="box-endereco">
             <h2>Localização</h2>
             <p>Venha nos visitar!</p>
-            <p>Av. Ibirapuera, 1234 - São Paulo, SP</p>
-            <p>Telefone: (11) 1234-5678</p>
-            <p>Email: contato@hotelexemplo.com</p>
+            <p th:text="${hotelInfo.endereco.logradouro + ', ' + hotelInfo.endereco.numero + ' - ' + hotelInfo.endereco.cidade + ', ' + hotelInfo.endereco.uf}">Av. Ibirapuera, 1234 - São Paulo, SP</p>
+            <p>Telefone: <span th:text="${hotelInfo.telefone}">(11) 1234-5678</span></p>
+            <p>Email: <span th:text="${hotelInfo.email}">contato@ilhadosol.com</span></p>
           </div>
           <div class="box-endereco">
-            <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14626.08857126789!2d-46.672909652492116!3d-23.585599945224267!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59e6f06b0f89%3A0x43617829f701baf6!2sIbirapuera%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1758716057377!5m2!1spt-BR!2sbr"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3654.165116241383!2d-46.7012637!3d-23.6700525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5036539648d5%3A0x78501a72680ea23a!2sCentro%20Universit%C3%A1rio%20Senac%20-%20Santo%20Amaro!5e0!3m2!1spt-BR!2sbr!4v1762975049325!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>
       </div>
@@ -169,7 +226,7 @@
               <nav>
                   <a th:href="@{/home}">INÍCIO</a>
                   <a th:href="@{/quartos}">RESERVAR</a>
-                  <a th:href="@{/home}">O HOTEL</a>
+                  <a th:href="@{/quartos}">QUARTOS</a>
                   <a th:href="@{/cadastro}">CONTATO</a>
               </nav>
           </div>
