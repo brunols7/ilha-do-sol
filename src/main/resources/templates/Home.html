@@ -15,9 +15,9 @@
         <div class="box-links-pages">
             <nav>
                 <a th:href="@{/home}">INÍCIO</a>
-                <a th:href="@{/quartos}">RESERVAR</a>
+                <a th:href="@{/reservar}">RESERVAR</a>
                 <a th:href="@{/quartos}">QUARTOS</a>
-                <a th:href="@{/cadastro}">CONTATO</a>
+                <a th:href="@{/contato}">CONTATO</a>
             </nav>
             <a class="link-icones" th:href="@{/reservas}">
                 <ion-icon class="icone-icon" name="airplane-outline"></ion-icon>
@@ -36,22 +36,23 @@
                  <a
                   ><ion-icon name="calendar-outline"></ion-icon> Diárias</a
                 >
-                <label for="">Entrada</label>
-                <input type="date">
-                <label for="">Saída</label>
-                <input type="date">
+                <label for="dataEntradaHome">Entrada</label>
+                <input type="date" id="dataEntradaHome">
+                <label for="dataSaidaHome">Saída</label>
+                <input type="date" id="dataSaidaHome">
             </div>
             <div class="box-hospedes">
                 <a><ion-icon name="body-outline"></ion-icon> Hóspedes</a>
-                <select name="" id="">
+                <select name="" id="hospedesHome">
                     <option value="1">1 Adulto</option>
                     <option value="2">2 Adultos</option>
-                    <option value="3">1 Adulto, 1 Criança</option>
-                    <option value="4">2 Adulto, 1 Criança</option>
+                    <option value="3">3 Adultos</option>
+                    <option value="4">4 Adultos</option>
+                    <option value="5">5 Adultos</option>
                 </select>
-                
+
             </div>
-            <a class="botao" href="">BUSCAR RESERVA</a>
+            <button class="botao" onclick="buscarReservaHome()">BUSCAR RESERVA</button>
         </div>
         <div class="box-bem-vindo-text">
             <img th:src="@{/img/logo.png}" alt="">
@@ -225,14 +226,13 @@
           <div class="box-links-footer">
               <nav>
                   <a th:href="@{/home}">INÍCIO</a>
-                  <a th:href="@{/quartos}">RESERVAR</a>
+                  <a th:href="@{/reservar}">RESERVAR</a>
                   <a th:href="@{/quartos}">QUARTOS</a>
-                  <a th:href="@{/cadastro}">CONTATO</a>
+                  <a th:href="@{/contato}">CONTATO</a>
               </nav>
           </div>
           <div class="box-links-footer">
             <nav>
-                <a th:href="@{/home}">COMODIDADES</a>
                 <a th:href="@{/perfil}">MEU PERFIL</a>
                 <a th:href="@{/reservas}">MINHAS RESERVAS</a>
             </nav>

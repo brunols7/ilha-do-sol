@@ -6,13 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="517703d8-7d5c-44b2-ab7a-3796b92a98ee" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/senac/ilha_do_sol/controllers/PagesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/senac/ilha_do_sol/controllers/PagesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/senac/ilha_do_sol/entities/HotelInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/senac/ilha_do_sol/entities/HotelInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/senac/ilha_do_sol/infra/exceptions/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/senac/ilha_do_sol/infra/exceptions/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/senac/ilha_do_sol/services/HotelInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/senac/ilha_do_sol/services/HotelInfoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/Perfil.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/Perfil.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/Cadastro.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/Cadastro.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/AdmHome.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/AdmHome.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/Home.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/Home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/Reservas.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/Reservas.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/AdmHome.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/AdmHome.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/Home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/Home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/Login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/Login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/Perfil.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/Perfil.html" afterDir="false" />

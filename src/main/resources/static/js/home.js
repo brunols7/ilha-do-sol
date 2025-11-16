@@ -46,8 +46,40 @@ function scrollToNextDepo(dir = 1) {
 depoNext.addEventListener("click", () => scrollToNextDepo(1));
 depoPrev.addEventListener("click", () => scrollToNextDepo(-1));
 
-// (opcional) setas do teclado só para depoimentos
 window.addEventListener("keydown", (e) => {
-  if (e.key === "d") scrollToNextDepo(1); // seta com "d" (direita) só de exemplo
-  if (e.key === "a") scrollToNextDepo(-1); // seta com "a" (esquerda)
+  if (e.key === "d") scrollToNextDepo(1);
+  if (e.key === "a") scrollToNextDepo(-1);
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  const dataEntrada = document.getElementById('dataEntradaHome');
+  const dataSaida = document.getElementById('dataSaidaHome');
+
+  const hoje = new Date();
+  hoje.setDate(hoje.getDate() + 1);
+  const amanha = hoje.toISOString().split('T')[0];
+
+  dataEntrada.setAttribute('min', amanha);
+
+  dataEntrada.addEventListener('change', function() {
+    const entradaDate = new Date(this.value);
+    entradaDate.setDate(entradaDate.getDate() + 1);
+    const minSaida = entradaDate.toISOString().split('T')[0];
+    dataSaida.setAttribute('min', minSaida);
+    dataSaida.value = '';
+  });
+});
+
+function buscarReservaHome() {
+  const dataEntrada = document.getElementById('dataEntradaHome').value;
+  const dataSaida = document.getElementById('dataSaidaHome').value;
+  const hospedes = document.getElementById('hospedesHome').value;
+
+  if (!dataEntrada || !dataSaida) {
+    alert('Por favor, selecione as datas de entrada e saída');
+    return;
+  }
+
+  const url = `/reservar?checkIn=${dataEntrada}&checkOut=${dataSaida}&hospedes=${hospedes}`;
+  window.location.href = url;
+}

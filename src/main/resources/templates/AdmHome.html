@@ -3,20 +3,190 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ADM Home</title>
+    <title>Painel Administrativo</title>
     <link rel="stylesheet" th:href="@{/css/AdmHome.css}" />
   </head>
   <body>
-    <div class="container-geral-admo-home">
-      <main>
-        <div class="box-todos-adm">
-          <h1>Olá, Administrador!</h1>
-          <p>Seja bem-vindo ao painel administrativo do Hotel Ilha do Sol.</p>
+    <header class="header-admin">
+      <div class="header-content">
+        <div class="logo-admin">
+          <img th:src="@{/img/logo-1.png}" alt="Logo" />
+          <h2>Painel Administrativo</h2>
         </div>
-      </main>
-      <header>
-        <img th:src="@{/img/logo-1.png}" alt="Logo" />
-      </header>
+        <div class="header-actions">
+          <a th:href="@{/home}" class="btn-voltar">
+            <ion-icon name="arrow-back-outline"></ion-icon>
+            Voltar ao Site
+          </a>
+          <form th:action="@{/logout}" method="post" style="display: inline">
+            <button type="submit" class="btn-logout">
+              <ion-icon name="log-out-outline"></ion-icon>
+              Sair
+            </button>
+          </form>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-admin">
+      <div class="tabs">
+        <button class="tab-button active" onclick="openTab('quartos')">
+          <ion-icon name="bed-outline"></ion-icon>
+          Gerenciar Quartos
+        </button>
+        <button class="tab-button" onclick="openTab('reservas')">
+          <ion-icon name="calendar-outline"></ion-icon>
+          Gerenciar Reservas
+        </button>
+      </div>
+
+      <div id="quartos" class="tab-content active">
+        <div class="section-header">
+          <h2>Gerenciamento de Quartos</h2>
+          <button class="btn-primary" onclick="abrirModalNovoQuarto()">
+            <ion-icon name="add-circle-outline"></ion-icon>
+            Novo Quarto
+          </button>
+        </div>
+
+        <div class="table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Número</th>
+                <th>Capacidade</th>
+                <th>Camas</th>
+                <th>Valor/Noite</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaQuartos">
+              <tr>
+                <td colspan="7" class="loading">Carregando quartos...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="reservas" class="tab-content">
+        <div class="section-header">
+          <h2>Gerenciamento de Reservas</h2>
+          <div class="filtros-reservas">
+            <select id="filtroStatus" onchange="filtrarReservas()">
+              <option value="">Todos os Status</option>
+              <option value="CONFIRMADA">Confirmadas</option>
+              <option value="PENDENTE">Pendentes</option>
+              <option value="CANCELADA">Canceladas</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Usuário</th>
+                <th>Quarto</th>
+                <th>Check-in</th>
+                <th>Check-out</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaReservas">
+              <tr>
+                <td colspan="7" class="loading">Carregando reservas...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <div id="modalQuarto" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="fecharModalQuarto()">&times;</span>
+        <h3 id="tituloModalQuarto">Novo Quarto</h3>
+        <form id="formQuarto" onsubmit="salvarQuarto(event)">
+          <input type="hidden" id="quartoId" />
+          <div class="form-group">
+            <label for="quartoNome">Nome do Quarto *</label>
+            <input type="text" id="quartoNome" required />
+          </div>
+          <div class="form-group">
+            <label for="quartoDescricao">Descrição *</label>
+            <textarea id="quartoDescricao" rows="3" required></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="quartoNumero">Número *</label>
+              <input type="text" id="quartoNumero" required />
+            </div>
+            <div class="form-group">
+              <label for="quartoCapacidade">Capacidade *</label>
+              <input type="number" id="quartoCapacidade" min="1" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="quartoCamas">Camas *</label>
+              <input type="number" id="quartoCamas" min="1" required />
+            </div>
+            <div class="form-group">
+              <label for="quartoValor">Valor/Noite *</label>
+              <input type="number" id="quartoValor" step="0.01" min="0" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="quartoImagem">URL da Imagem</label>
+            <input type="text" id="quartoImagem" />
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn-secondary" onclick="fecharModalQuarto()">
+              Cancelar
+            </button>
+            <button type="submit" class="btn-primary">Salvar</button>
+          </div>
+        </form>
+      </div>
     </div>
+
+    <div id="modalReserva" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="fecharModalReserva()">&times;</span>
+        <h3>Alterar Status da Reserva</h3>
+        <form id="formReserva" onsubmit="alterarStatusReserva(event)">
+          <input type="hidden" id="reservaId" />
+          <div class="form-group">
+            <label for="reservaStatus">Novo Status *</label>
+            <select id="reservaStatus" required>
+              <option value="CONFIRMADA">Confirmada</option>
+              <option value="PENDENTE">Pendente</option>
+              <option value="CANCELADA">Cancelada</option>
+            </select>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn-secondary" onclick="fecharModalReserva()">
+              Cancelar
+            </button>
+            <button type="submit" class="btn-primary">Alterar Status</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script th:src="@{/js/admin.js}"></script>
   </body>
 </html>

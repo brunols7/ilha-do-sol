@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Realizar Reserva</title>
+    <link rel="stylesheet" th:href="@{/css/RealizarReserva.css}" />
+  </head>
+  <body>
+    <header>
+      <div class="container-geral-header">
+        <div class="box-img-logo">
+          <img th:src="@{/img/logo.png}" alt="" />
+        </div>
+        <div class="box-links-pages">
+          <nav>
+            <a th:href="@{/home}">INÍCIO</a>
+            <a th:href="@{/reservar}">RESERVAR</a>
+            <a th:href="@{/quartos}">QUARTOS</a>
+            <a th:href="@{/contato}">CONTATO</a>
+          </nav>
+          <a class="link-icones" th:href="@{/reservas}">
+            <ion-icon class="icone-icon" name="airplane-outline"></ion-icon>
+          </a>
+          <a class="link-icones" th:href="@{/perfil}">
+            <ion-icon class="icone-icon" name="person-outline"></ion-icon>
+          </a>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="container-geral-reserva">
+        <div class="box-titulo">
+          <h2>Realize sua Reserva</h2>
+          <p>Escolha o quarto ideal e garanta sua estadia no Hotel Ilha do Sol</p>
+        </div>
+
+        <div class="box-formulario-reserva">
+          <div class="box-filtros">
+            <h3>Buscar Quartos Disponíveis</h3>
+            <div class="form-group">
+              <label for="dataCheckIn">Check-in</label>
+              <input type="date" id="dataCheckIn" name="dataCheckIn" required />
+            </div>
+            <div class="form-group">
+              <label for="dataCheckOut">Check-out</label>
+              <input type="date" id="dataCheckOut" name="dataCheckOut" required />
+            </div>
+            <div class="form-group">
+              <label for="capacidade">Número de Hóspedes</label>
+              <select id="capacidade" name="capacidade">
+                <option value="1">1 Hóspede</option>
+                <option value="2">2 Hóspedes</option>
+                <option value="3">3 Hóspedes</option>
+                <option value="4">4 Hóspedes</option>
+                <option value="5">5 Hóspedes</option>
+              </select>
+            </div>
+            <button class="btn-buscar" onclick="buscarQuartosDisponiveis()">
+              <ion-icon name="search-outline"></ion-icon>
+              Buscar Quartos
+            </button>
+          </div>
+
+          <div class="box-quartos-disponiveis">
+            <h3>Quartos Disponíveis</h3>
+            <div id="listaQuartos" class="lista-quartos">
+              <div class="mensagem-inicial">
+                <ion-icon name="bed-outline"></ion-icon>
+                <p>Selecione as datas e número de hóspedes para ver os quartos disponíveis</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="modalConfirmacao" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="fecharModal()">&times;</span>
+            <h3>Confirmar Reserva</h3>
+            <div id="detalhesReserva"></div>
+            <div class="modal-actions">
+              <button class="btn-cancelar" onclick="fecharModal()">Cancelar</button>
+              <button class="btn-confirmar" onclick="confirmarReserva()">Confirmar Reserva</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script th:src="@{/js/realizarReserva.js}"></script>
+  </body>
+</html>

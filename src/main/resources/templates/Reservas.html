@@ -15,9 +15,9 @@
         <div class="box-links-pages">
           <nav>
             <a th:href="@{/home}">INÍCIO</a>
-            <a th:href="@{/quartos}">RESERVAR</a>
+            <a th:href="@{/reservar}">RESERVAR</a>
             <a th:href="@{/quartos}">QUARTOS</a>
-            <a th:href="@{/cadastro}">CONTATO</a>
+            <a th:href="@{/contato}">CONTATO</a>
           </nav>
           <a class="link-icones" th:href="@{/reservas}">
             <ion-icon class="icone-icon" name="airplane-outline"></ion-icon>
@@ -35,7 +35,8 @@
             <h2>Minhas reservas</h2>
             <p>Aqui você pode consultar ou gerir suas reservas!</p>
           </div>
-          <div class="box-cards-quartos">
+
+          <div class="box-cards-quartos" th:if="${reservas != null && !reservas.isEmpty()}">
             <div class="box-card-dorm" th:each="reserva : ${reservas}">
               <div class="box-image">
                 <img
@@ -45,46 +46,54 @@
               </div>
               <div class="box-sub-conf">
                 <p th:text="${reserva.quarto.nome}">Quarto Beira Mar</p>
-                <p class="status" th:text="${reserva.status}">CONFIRMADA</p>
+                <p class="status"
+                   th:text="${reserva.status}"
+                   th:classappend="${reserva.status == 'CONFIRMADA' ? 'status-confirmada' : (reserva.status == 'CANCELADA' ? 'status-cancelada' : 'status-pendente')}">
+                  CONFIRMADA
+                </p>
               </div>
-              <div class="box-icones">
-                <div class="box-link-1">
-                  <a>
-                    <ion-icon name="body-outline"></ion-icon>
-                    <span th:text="${reserva.quarto.capacidadeMax}">3</span>
-                  </a>
-                  <a>
-                    <ion-icon name="calendar-outline"></ion-icon>
-                    <span
-                      th:text="${#temporals.format(reserva.dataCheckIn, 'dd/MM')}"
-                      >12/09</span
-                    >
-                    -
-                    <span
-                      th:text="${#temporals.format(reserva.dataCheckOut, 'dd/MM')}"
-                      >15/09</span
-                    >
-                  </a>
+              <div class="box-info-adicional">
+                <div class="info-item">
+                  <ion-icon name="body-outline"></ion-icon>
+                  <span th:text="${reserva.quarto.capacidadeMax} + ' hóspedes'">3 hóspedes</span>
                 </div>
+                <div class="info-item">
+                  <ion-icon name="calendar-outline"></ion-icon>
+                  <span>
+                    <span th:text="${#temporals.format(reserva.dataCheckIn, 'dd/MM/yyyy')}">12/09/2025</span>
+                    -
+                    <span th:text="${#temporals.format(reserva.dataCheckOut, 'dd/MM/yyyy')}">15/09/2025</span>
+                  </span>
+                </div>
+                <div class="info-item">
+                  <ion-icon name="bed-outline"></ion-icon>
+                  <span th:text="${reserva.quarto.camas} + ' camas'">2 camas</span>
+                </div>
+              </div>
+              <div class="box-acoes" th:if="${reserva.status != 'CANCELADA'}">
                 <form
                   th:action="@{/reservas/{id}/cancelar(id=${reserva.id})}"
                   method="post"
+                  onsubmit="return confirm('Tem certeza que deseja cancelar esta reserva?')"
                   style="display: inline"
                 >
-                  <button
-                    type="submit"
-                    style="
-                      background: none;
-                      border: none;
-                      cursor: pointer;
-                      color: inherit;
-                    "
-                  >
-                    <ion-icon name="trash-outline"></ion-icon>
+                  <button type="submit" class="btn-cancelar" title="Cancelar reserva">
+                    <ion-icon name="close-circle-outline"></ion-icon>
+                    Cancelar
                   </button>
                 </form>
               </div>
+              <div class="box-acoes-cancelada" th:if="${reserva.status == 'CANCELADA'}">
+                <p class="texto-cancelada">Reserva cancelada</p>
+              </div>
             </div>
+          </div>
+
+          <div class="mensagem-vazio" th:if="${reservas == null || reservas.isEmpty()}">
+            <ion-icon name="calendar-outline"></ion-icon>
+            <h3>Você ainda não possui reservas</h3>
+            <p>Faça sua primeira reserva e aproveite o melhor do Hotel Ilha do Sol!</p>
+            <a th:href="@{/reservar}" class="btn-reservar">Fazer uma Reserva</a>
           </div>
         </div>
       </div>
