@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contato</title>
+    <link rel="stylesheet" th:href="@{/css/Contato.css}" />
+  </head>
+  <body>
+    <header>
+      <div class="container-geral-header">
+        <div class="box-img-logo">
+          <img th:src="@{/img/logo.png}" alt="" />
+        </div>
+        <div class="box-links-pages">
+          <nav>
+            <a th:href="@{/home}">INÍCIO</a>
+            <a th:href="@{/reservar}">RESERVAR</a>
+            <a th:href="@{/quartos}">QUARTOS</a>
+            <a th:href="@{/contato}">CONTATO</a>
+          </nav>
+          <a class="link-icones" th:href="@{/reservas}">
+            <ion-icon class="icone-icon" name="airplane-outline"></ion-icon>
+          </a>
+          <a class="link-icones" th:href="@{/perfil}">
+            <ion-icon class="icone-icon" name="person-outline"></ion-icon>
+          </a>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="container-geral-contato">
+        <div class="box-titulo">
+          <h2>Entre em Contato</h2>
+          <p>Estamos sempre prontos para atendê-lo</p>
+        </div>
+
+        <div class="box-info-contato">
+          <div class="card-contato">
+            <div class="icone">
+              <ion-icon name="location-outline"></ion-icon>
+            </div>
+            <h3>Endereço</h3>
+            <p th:if="${hotelInfo != null && hotelInfo.endereco != null}">
+              <span th:text="${hotelInfo.endereco.logradouro}"></span>,
+              <span th:text="${hotelInfo.endereco.numero}"></span><br />
+              <span th:text="${hotelInfo.endereco.bairro}"></span><br />
+              <span th:text="${hotelInfo.endereco.cidade}"></span> -
+              <span th:text="${hotelInfo.endereco.uf}"></span><br />
+              CEP: <span th:text="${hotelInfo.endereco.cep}"></span>
+            </p>
+          </div>
+
+          <div class="card-contato">
+            <div class="icone">
+              <ion-icon name="call-outline"></ion-icon>
+            </div>
+            <h3>Telefone</h3>
+            <p th:if="${hotelInfo != null}">
+              <a th:href="'tel:' + ${hotelInfo.telefone}" th:text="${hotelInfo.telefone}"></a>
+            </p>
+          </div>
+
+          <div class="card-contato">
+            <div class="icone">
+              <ion-icon name="mail-outline"></ion-icon>
+            </div>
+            <h3>E-mail</h3>
+            <p th:if="${hotelInfo != null}">
+              <a th:href="'mailto:' + ${hotelInfo.email}" th:text="${hotelInfo.email}"></a>
+            </p>
+          </div>
+        </div>
+
+        <div class="box-mapa">
+          <h3>Nossa Localização</h3>
+          <div class="mapa-container" th:if="${hotelInfo != null && hotelInfo.endereco != null}">
+            <iframe
+              th:src="'https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=' + ${hotelInfo.endereco.logradouro} + ',' + ${hotelInfo.endereco.numero} + ',' + ${hotelInfo.endereco.cidade} + ',' + ${hotelInfo.endereco.uf}"
+              width="100%"
+              height="450"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+
+        <div class="box-horario">
+          <h3>Horário de Atendimento</h3>
+          <div class="horario-info">
+            <div class="horario-item">
+              <ion-icon name="time-outline"></ion-icon>
+              <div>
+                <p class="dia">Segunda a Sexta</p>
+                <p class="hora">08:00 - 22:00</p>
+              </div>
+            </div>
+            <div class="horario-item">
+              <ion-icon name="time-outline"></ion-icon>
+              <div>
+                <p class="dia">Sábados e Domingos</p>
+                <p class="hora">09:00 - 20:00</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>

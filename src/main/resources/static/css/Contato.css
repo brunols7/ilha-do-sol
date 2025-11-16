@@ -1,0 +1,252 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 90px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  .container-geral-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px 20px;
+
+    .box-img-logo {
+      width: 90px;
+      height: 80px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .box-links-pages {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+
+      nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+
+        a {
+          text-decoration: none;
+          color: #2c2c2c;
+          font-size: 16px;
+          font-weight: 500;
+          transition: all 0.3s ease;
+
+          &:hover {
+            color: rgb(255, 115, 0);
+          }
+        }
+      }
+
+      .link-icones {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: background-color 0.3s ease;
+
+        .icone-icon {
+          font-size: 30px;
+          color: rgb(255, 115, 0);
+        }
+
+        &:hover {
+          background-color: rgba(255, 115, 0, 0.1);
+        }
+      }
+    }
+  }
+}
+
+main {
+  width: 100%;
+  min-height: calc(100vh - 90px);
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  background-color: #f5f5f5;
+
+  .container-geral-contato {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    .box-titulo {
+      text-align: center;
+
+      h2 {
+        color: #2c2c2c;
+        font-size: 32px;
+        margin-bottom: 10px;
+      }
+
+      p {
+        color: #8f8f8f;
+        font-size: 16px;
+      }
+    }
+
+    .box-info-contato {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+
+      .card-contato {
+        background: white;
+        padding: 40px 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .icone {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 80px;
+          height: 80px;
+          margin: 0 auto 20px;
+          background-color: rgba(255, 115, 0, 0.1);
+          border-radius: 50%;
+
+          ion-icon {
+            font-size: 40px;
+            color: rgb(255, 115, 0);
+          }
+        }
+
+        h3 {
+          color: #2c2c2c;
+          font-size: 20px;
+          margin-bottom: 15px;
+        }
+
+        p {
+          color: #8f8f8f;
+          font-size: 14px;
+          line-height: 1.6;
+
+          a {
+            color: rgb(255, 115, 0);
+            text-decoration: none;
+            transition: color 0.3s ease;
+
+            &:hover {
+              color: rgb(230, 100, 0);
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+
+    .box-mapa {
+      background: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+      h3 {
+        color: #2c2c2c;
+        font-size: 24px;
+        margin-bottom: 25px;
+        text-align: center;
+      }
+
+      .mapa-container {
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    .box-horario {
+      background: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+      h3 {
+        color: #2c2c2c;
+        font-size: 24px;
+        margin-bottom: 25px;
+        text-align: center;
+      }
+
+      .horario-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        max-width: 800px;
+        margin: 0 auto;
+
+        .horario-item {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          padding: 20px;
+          background-color: #f9f9f9;
+          border-radius: 8px;
+          border-left: 4px solid rgb(255, 115, 0);
+
+          ion-icon {
+            font-size: 40px;
+            color: rgb(255, 115, 0);
+            flex-shrink: 0;
+          }
+
+          div {
+            flex: 1;
+
+            .dia {
+              color: #2c2c2c;
+              font-size: 16px;
+              font-weight: 600;
+              margin-bottom: 5px;
+            }
+
+            .hora {
+              color: #8f8f8f;
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .box-info-contato {
+    grid-template-columns: 1fr !important;
+  }
+
+  .horario-info {
+    grid-template-columns: 1fr !important;
+  }
+}
