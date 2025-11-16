@@ -136,4 +136,16 @@ public class PagesController {
         return "redirect:/reservas";
     }
 
+    @GetMapping("/reservar")
+    public String realizarReserva(){
+        return "RealizarReserva";
+    }
+
+    @GetMapping("/contato")
+    public String contato(Model model){
+        HotelInfo hotelInfo = hotelInfoService.buscarInformacaoPrincipal();
+        model.addAttribute("hotelInfo", hotelInfo);
+        return "Contato";
+    }
+
 }

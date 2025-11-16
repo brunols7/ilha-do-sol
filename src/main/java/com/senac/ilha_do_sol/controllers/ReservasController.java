@@ -1,5 +1,6 @@
 package com.senac.ilha_do_sol.controllers;
 
+import com.senac.ilha_do_sol.dto.AtualizarStatusDTO;
 import com.senac.ilha_do_sol.dto.ReservaDTO;
 import com.senac.ilha_do_sol.entities.Reservas;
 import com.senac.ilha_do_sol.entities.Status;
@@ -90,9 +91,9 @@ public class ReservasController {
     }
 
     @PatchMapping("/{id}/status")
-    public ResponseEntity<?> atualizarStatus(@PathVariable Long id, @RequestParam Status status) {
+    public ResponseEntity<?> atualizarStatus(@PathVariable Long id, @RequestBody AtualizarStatusDTO statusDTO) {
         try {
-            Reservas reserva = reservasService.atualizarStatusReserva(id, status);
+            Reservas reserva = reservasService.atualizarStatusReserva(id, statusDTO.getStatus());
             return ResponseEntity.ok(reserva);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -123,8 +124,8 @@ public class ReservasController {
 
     private Users getUsuarioAutenticado() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-        return usersRepository.findByUsername(username)
+        String email = authentication.getName();
+        return usersRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Usuário não autenticado"));
     }
 }
